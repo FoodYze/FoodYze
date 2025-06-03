@@ -110,8 +110,8 @@ class App(ctk.CTk):
         super().__init__()
         
         self.title("Geli")
-        self.geometry("400x700")
-        self.minsize(380, 600)
+        self.geometry("400x650")
+        self.minsize(400, 650)
         
         self.grid_rowconfigure(0, weight=0) 
         self.grid_rowconfigure(1, weight=1) 

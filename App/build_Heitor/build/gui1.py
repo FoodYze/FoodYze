@@ -89,9 +89,9 @@ class App(ctk.CTk):
 
         # Configuração da janela
         self.title("Food-YZE")
-        self.geometry("375x812")
-        self.minsize(375, 812)
-        self.maxsize(375, 812)
+        self.geometry("400x650")
+        self.minsize(400, 650)
+        self.maxsize(400, 650)
         self.configure(fg_color="#F5F5F5") # Cor de fundo da janela principal
 
         # Configuração de fontes modernas
@@ -211,11 +211,6 @@ class App(ctk.CTk):
                       corner_radius=12,
                       height=55 # Aumentado de 50 para 55
                      ).grid(row=2, column=0, padx=20, pady=(10, 20), sticky="ew")
-
-        # Rodapé moderno
-        ctk.CTkLabel(self, text="© 2023 Food-YZE | IA Culinária",
-                     font=self.small_font, text_color="#999999",
-                     bg_color="transparent").grid(row=2, column=0, pady=(0, 20), sticky="s") # Alinha ao sul da janela
 
     def update_gif(self):
         if self.gif_frames:

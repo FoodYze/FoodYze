@@ -46,9 +46,9 @@ class EstoqueApp(ctk.CTk):
 
         self.title("Estoque")
         # JANELA REDUZIDA
-        self.geometry("375x750") 
-        self.minsize(375, 750)
-        self.maxsize(375, 750)
+        self.geometry("400x650") 
+        self.minsize(400, 650)
+        self.maxsize(400, 650)
         self.configure(fg_color="#F5F5F5") # Fundo da janela
 
         # Fontes personalizadas
