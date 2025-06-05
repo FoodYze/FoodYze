@@ -347,7 +347,6 @@ class EstoqueApp(ctk.CTk):
                     print(f"Caminho da imagem fornecido '{img_path_str}' não é válido ou não encontrado. Usando imagem padrão.")
 
             if nome in estoque:
-                # Se o item já existe, apenas adiciona a quantidade.
                 # A unidade não é alterada aqui para simplificar.
                 # Poderia ser uma melhoria futura perguntar se deseja alterar a unidade ou converter.
                 estoque[nome]["qtd"] += qtd
