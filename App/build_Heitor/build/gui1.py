@@ -4,7 +4,7 @@ import sys
 import mysql.connector
 from mysql.connector import Error
 from pathlib import Path
-from PIL import Image, ImageTk, ImageSequence # Necessário para GIFs
+from PIL import Image, ImageTk, ImageSequence
 
 def conectar_mysql(host, database, user, password):
     """

@@ -3,10 +3,94 @@ from datetime import datetime
 from pathlib import Path
 import subprocess
 import sys
+import mysql.connector
+from mysql.connector import Error
 import google.generativeai as genai
 import os
 import traceback # Para melhor depuração de erros
 import re # Adicionado para sanitizar nomes de arquivos
+from tkinter import messagebox
+
+def conectar_mysql(host, database, user, password):
+    """ Tenta conectar ao banco de dados MySQL. """
+    try:
+        conexao = mysql.connector.connect(
+            host=host,
+            database=database,
+            user=user,
+            password=password
+        )
+        if conexao.is_connected():
+            db_info = conexao.get_server_info()
+            print(f"Conectado ao MySQL versão {db_info}")
+            cursor = conexao.cursor()
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print(f"Você está conectado ao banco de dados: {record[0]}")
+            print("Log: Conexão ao MySQL bem-sucedida!")
+            return conexao
+    except Error as e:
+        print(f"Log: Erro CRÍTICO ao conectar ao MySQL: {e}")
+        messagebox.showerror("Erro de Conexão", f"Não foi possível conectar ao banco de dados:\n{e}\n\nVerifique suas credenciais e se o servidor MySQL está rodando.")
+        return None
+
+# --- SUAS CREDENCIAIS ---
+db_host = "localhost"
+db_name = "foodyze"
+db_usuario = "foodyzeadm"
+db_senha = "supfood0017admx"
+
+# --- CAMINHOS DOS ARQUIVOS ---
+OUTPUT_PATH = Path(__file__).parent
+SETA_IMAGE_PATH = OUTPUT_PATH / "seta.png"
+UP_ARROW_IMAGE_PATH = OUTPUT_PATH / "up_arrow.png"
+DOWN_ARROW_IMAGE_PATH = OUTPUT_PATH / "down_arrow.png"
+DEFAULT_ITEM_IMAGE_PATH = OUTPUT_PATH / "default.png"
+
+def buscar_estoque_do_bd(conexao):
+    """
+    Busca os produtos no BD e retorna uma lista de dicionários.
+    Ex: [{'nome': 'Leite', 'quantidade': 2, 'unidade': 'Litros'},...]
+    """
+    if not conexao or not conexao.is_connected():
+        print("Log: Conexão com BD indisponível para buscar estoque.")
+        return []
+
+    try:
+        # Usar dictionary=True é útil, mas vamos montar manualmente para ter as chaves que queremos
+        cursor = conexao.cursor()
+        cursor.execute("SELECT nome_produto, quantidade_produto, tipo_volume FROM produtos")
+        produtos_bd = cursor.fetchall()
+        cursor.close()
+
+        lista_estoque = []
+        for produto in produtos_bd:
+            lista_estoque.append({
+                "nome": produto[0],
+                "quantidade": produto[1],
+                "unidade": produto[2]
+            })
+
+        print(f"DEBUG: Estoque encontrado no BD: {len(lista_estoque)} itens.")
+        return lista_estoque
+
+    except Error as e:
+        print(f"Erro ao buscar estoque do banco de dados: {e}")
+        return []
+
+def formatar_estoque_para_ia(lista_estoque):
+    """
+    Converte a lista de estoque em uma string formatada para a IA.
+    """
+    if not lista_estoque:
+        return "\n\nESTOQUE ATUAL: O estoque está vazio."
+
+    # Cria o cabeçalho e depois a lista de itens.
+    header = "\n\nESTOQUE ATUAL (itens que você pode deve dar preferência para usar em casos de receitas sugeridas):\n"
+    # Formata cada item do dicionário em uma linha de texto.
+    items_str_list = [f"= {item['nome']}: {item['quantidade']} {item['unidade']}" for item in lista_estoque]
+
+    return header + "\n".join(items_str_list)
 
 # --- INÍCIO: Configuração da API Gemini ---
 # IMPORTANTE: Substitua pela sua chave API. Considere usar variáveis de ambiente em produção.
@@ -269,41 +353,64 @@ class App(ctk.CTk):
 
         self.add_message(resposta_bot, "bot")
 
-        # Lógica para identificar e salvar a receita
+        # --- INÍCIO DA NOVA LÓGICA DE DETECÇÃO DE RECEITA ---
+        # Esta lógica é mais flexível para lidar com títulos de múltiplas linhas
+        # e a ausência da palavra-chave "ingredientes".
         is_recipe = False
-        lines = [line.strip() for line in resposta_bot.split('\n') if line.strip()]  # Remove linhas vazias
+        lines = resposta_bot.splitlines()
 
-        print(f"DEBUG: Número de linhas não vazias: {len(lines)}")
-        if len(lines) >= 2:  # Reduzindo para 2 linhas para ser mais flexível
-            # Junta todo o conteúdo em uma string para facilitar a busca
-            full_text_lower = resposta_bot.lower()
-            print(f"DEBUG: Texto completo (início): {full_text_lower[:200]}...")  # Mostra início do texto
-            
-            # Verifica se contém seções de ingredientes e preparo (com variações comuns)
-            ingredientes_terms = ["ingredientes:", "ingrediente:", "ingredientes ", "- "]
-            instrucoes_terms = ["modo de preparo:", "modo de fazer:", "preparo:", "instruções:", "como fazer:", "modo de preparação:", "preparação:"]
-            
-            has_ingredients = any(term in full_text_lower for term in ingredientes_terms)
-            has_instructions = any(term in full_text_lower for term in instrucoes_terms)
-            
-            # Verifica se tem múltiplas linhas com conteúdo
-            has_multiple_sections = len(lines) >= 3
-            
-            # Verifica se parece uma lista de ingredientes (linhas começando com - ou números)
-            has_list_format = any(re.match(r'^[\d\-•]', line) for line in lines[:10])
-            
-            print(f"DEBUG: has_ingredients={has_ingredients}, has_instructions={has_instructions}")
-            print(f"DEBUG: has_multiple_sections={has_multiple_sections}, has_list_format={has_list_format}")
-            
-            # Condição mais flexível para detecção de receita
-            if (has_ingredients and has_instructions) or \
-               (has_ingredients and has_multiple_sections) or \
-               (has_instructions and has_multiple_sections) or \
-               (has_multiple_sections and has_list_format):
-                is_recipe = True
-                print("DEBUG: Receita detectada baseada em estrutura de texto")
+        # Encontra o final do bloco de título (a primeira linha em branco)
+        title_end_index = -1
+        for i, line in enumerate(lines):
+            if not line.strip(): # Encontrou uma linha em branco
+                title_end_index = i
+                break
+        
+        title_is_valid = False
+        body_is_valid = False
 
-        print(f"DEBUG: Avaliação final is_recipe = {is_recipe}")
+        # 1. Valida o bloco do título (linhas em maiúsculas seguidas por uma linha em branco)
+        if title_end_index > 0: # O título deve ter pelo menos uma linha
+            title_lines = [lines[i].strip() for i in range(title_end_index)]
+            # Todas as linhas do título devem ser não vazias e em maiúsculas
+            if all(line and line.isupper() for line in title_lines):
+                title_is_valid = True
+
+        # 2. Valida o corpo da receita
+        if title_is_valid and len(lines) > title_end_index + 1:
+            recipe_body_lines = lines[title_end_index + 1:]
+            recipe_body_text = '\n'.join(recipe_body_lines).lower()
+
+            # O corpo DEVE ter palavras-chave de instrução
+            has_instructions_keyword = any(term in recipe_body_text for term in ["preparo:", "modo de preparo:", "instruções:", "modo de fazer:"])
+            
+            # O corpo DEVE ter itens de lista (ingredientes ou passos)
+            has_list_format = any(line.strip().startswith('-') for line in recipe_body_lines)
+
+            if has_instructions_keyword and has_list_format:
+                body_is_valid = True
+
+        # Decisão Final
+        if title_is_valid and body_is_valid:
+            is_recipe = True
+        
+        # Logs de Depuração Detalhados
+        print("\n--- Validação de Receita (Lógica Aprimorada) ---")
+        print(f"  - Bloco de Título Válido: {title_is_valid}")
+        if title_end_index > 0:
+            title_str = ' '.join([lines[i].strip() for i in range(title_end_index)])
+            print(f"    - Título Identificado: '{title_str}'")
+        print(f"  - Corpo de Receita Válido: {body_is_valid}")
+        if title_is_valid and len(lines) > title_end_index + 1:
+            body_text_lower = '\n'.join(lines[title_end_index + 1:]).lower()
+            instr_found = any(term in body_text_lower for term in ["preparo:", "modo de preparo:", "instruções:", "modo de fazer:"])
+            list_found = any(line.strip().startswith('-') for line in lines[title_end_index + 1:])
+            print(f"    - Palavra-chave de preparo encontrada: {instr_found}")
+            print(f"    - Formato de lista (-) encontrado: {list_found}")
+
+        print(f">>> RESULTADO: {'RECEITA DETECTADA' if is_recipe else 'NÃO é uma receita.'}")
+        print(f"---------------------------------------------\n")
+        # --- FIM DA NOVA LÓGICA ---
 
         if is_recipe:
             print("DEBUG: is_recipe == True. Iniciando processo de salvamento.")
@@ -311,16 +418,13 @@ class App(ctk.CTk):
             error_message_for_ui = ""
 
             try:
-                # Garante que o diretório de receitas salvas existe (verificado novamente por segurança)
-                if not SAVED_RECIPES_DIR.exists():
-                    print(f"DEBUG: Diretório {SAVED_RECIPES_DIR} não encontrado antes de salvar. Tentando criar.")
-                    SAVED_RECIPES_DIR.mkdir(parents=True, exist_ok=True) # Cria o diretório se não existir
-                    print(f"DEBUG: Diretório {SAVED_RECIPES_DIR} criado/confirmado.")
+                # Garante que o diretório de receitas salvas existe
+                SAVED_RECIPES_DIR.mkdir(parents=True, exist_ok=True)
 
-                # 1. Salvar arquivo permanente na pasta saved_recipes
-                recipe_title_line = next((line for line in lines if line), "receita_sem_titulo")  # Pega a primeira linha não vazia
+                # Constrói o título a partir do bloco de título identificado
+                recipe_title_line = ' '.join([lines[i].strip() for i in range(title_end_index)])
                 base_filename = self._sanitize_filename(recipe_title_line)
-                if not base_filename:  # Fallback para caso o título seja problemático
+                if not base_filename:  # Fallback
                     base_filename = "receita_sem_titulo"
 
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -329,7 +433,7 @@ class App(ctk.CTk):
 
                 print(f"DEBUG: Salvando receita em: {permanent_recipe_path.resolve()}")
                 with open(permanent_recipe_path, "w", encoding="utf-8") as f:
-                    f.write(resposta_bot)  # Salva a resposta completa do bot (que é a receita formatada)
+                    f.write(resposta_bot)
                 print(f"DEBUG: Receita salva com sucesso em: {permanent_recipe_path.resolve()}")
                 recipe_saved_successfully = True
 
@@ -337,22 +441,21 @@ class App(ctk.CTk):
                 error_message_for_ui = f"Erro de permissão ao salvar. Verifique se você tem permissão para escrever em '{SAVED_RECIPES_DIR.parent}'. Detalhe: {pe}"
                 print(f"ERRO DE PERMISSÃO: {error_message_for_ui}")
                 traceback.print_exc()
-            except FileNotFoundError as fnfe: # Se o diretório pai de SAVED_RECIPES_DIR não existir e mkdir falhar
+            except FileNotFoundError as fnfe:
                 error_message_for_ui = f"Erro: Caminho não encontrado ao salvar. '{fnfe}'. Verifique se '{SAVED_RECIPES_DIR.parent}' existe."
                 print(f"ERRO ARQUIVO/CAMINHO NÃO ENCONTRADO: {error_message_for_ui}")
                 traceback.print_exc()
-            except OSError as oe: # Erros gerais do sistema operacional, ex: disco cheio
-                error_message_for_ui = f"Erro de sistema ao salvar. Código: {oe.errno}. Detalhe: {oe.strerror}. (Ex: Disco cheio? Caminho inválido?)"
+            except OSError as oe:
+                error_message_for_ui = f"Erro de sistema ao salvar. Código: {oe.errno}. Detalhe: {oe.strerror}. (Ex: Disco cheio?)"
                 print(f"ERRO DE SISTEMA (OS ERROR): {error_message_for_ui}")
                 traceback.print_exc()
-            except Exception as e_save: # Captura outras exceções inesperadas
+            except Exception as e_save:
                 error_message_for_ui = f"Erro inesperado ao salvar receita: {type(e_save).__name__} - {e_save}. Verifique o console."
                 print(f"ERRO EXCEPTION GERAL ao salvar a receita: {e_save}")
                 traceback.print_exc()
 
             # Feedback final para o usuário no chat
             if recipe_saved_successfully:
-                # Mensagem de sucesso mais concisa
                 self.after(200, lambda: self.add_message("Receita salva com sucesso! Você já pode conferi-la no menu de receitas.", "bot_info"))
             else:
                 final_ui_error = error_message_for_ui if error_message_for_ui else "Falha desconhecida ao salvar receita. Verifique o console."
