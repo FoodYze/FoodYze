@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/06/2025 às 06:33
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 10/06/2025 às 14:55
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,13 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id_produto`, `nome_produto`, `quantidade_produto`, `tipo_volume`) VALUES
-(003, 'Pera', 59, 'Unidades');
+(004, 'Ovo', 12, 'Unidades'),
+(005, 'Farrinha', 2, 'Kg'),
+(006, 'Carne', 900, 'Gramas'),
+(007, 'Batata', 3, 'Unidades'),
+(008, 'Chocolate', 200, 'Gramas'),
+(009, 'Leite', 2, 'Litros'),
+(010, 'Cenoura', 2, 'Unidades');
 
 --
 -- Índices para tabelas despejadas
@@ -59,7 +65,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_produto` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
