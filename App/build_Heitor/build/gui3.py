@@ -75,7 +75,7 @@ class InventoryApp(ctk.CTk):
         except Exception:
             self.title_font, self.header_font, self.item_name_font, self.qty_font, self.dialog_label_font, self.dialog_entry_font, self.dialog_button_font, self.emoji_fallback_font = ("Arial", 22, "bold"), ("Arial", 16), ("Arial", 14), ("Arial", 14), ("Arial", 12), ("Arial", 12), ("Arial", 12, "bold"), ("Arial", 24, "bold")
 
-        self.measurement_units = ["Gramas", "Mililitros", "Unidades", "Kg", "Litros"]
+        self.measurement_units = ["Unidades", "Kg", "Litros"]
         self.create_widgets()
 
     def go_to_gui1(self):
