@@ -41,7 +41,8 @@ OUTPUT_PATH = Path(__file__).parent
 SETA_IMAGE_PATH = OUTPUT_PATH / "seta.png"
 UP_ARROW_IMAGE_PATH = OUTPUT_PATH / "up_arrow.png"
 DOWN_ARROW_IMAGE_PATH = OUTPUT_PATH / "down_arrow.png"
-DEFAULT_ITEM_IMAGE_PATH = OUTPUT_PATH / "default.png"
+# O caminho para a imagem padrão do item não é mais necessário.
+# DEFAULT_ITEM_IMAGE_PATH = OUTPUT_PATH / "default.png"
 
 class InventoryApp(ctk.CTk):
     def __init__(self, db_connection):
@@ -71,9 +72,8 @@ class InventoryApp(ctk.CTk):
             self.dialog_label_font = ctk.CTkFont("Poppins Regular", 12)
             self.dialog_entry_font = ctk.CTkFont("Poppins Regular", 12)
             self.dialog_button_font = ctk.CTkFont("Poppins Medium", 12)
-            self.emoji_fallback_font = ctk.CTkFont("Arial Bold", 24)
         except Exception:
-            self.title_font, self.header_font, self.item_name_font, self.qty_font, self.dialog_label_font, self.dialog_entry_font, self.dialog_button_font, self.emoji_fallback_font = ("Arial", 22, "bold"), ("Arial", 16), ("Arial", 14), ("Arial", 14), ("Arial", 12), ("Arial", 12), ("Arial", 12, "bold"), ("Arial", 24, "bold")
+            self.title_font, self.header_font, self.item_name_font, self.qty_font, self.dialog_label_font, self.dialog_entry_font, self.dialog_button_font = ("Arial", 22, "bold"), ("Arial", 16), ("Arial", 14), ("Arial", 14), ("Arial", 12), ("Arial", 12), ("Arial", 12, "bold")
 
         self.measurement_units = ["Unidades", "Kg", "Litros"]
         self.create_widgets()
@@ -111,10 +111,10 @@ class InventoryApp(ctk.CTk):
 
             for product in products_from_db:
                 name = product['nome_produto']
+                # A chave 'img' foi removida do dicionário.
                 self.local_stock[name] = {
                     "qtd": product['quantidade_produto'],
-                    "unidade": product['tipo_volume'],
-                    "img": str(OUTPUT_PATH / f"{name.lower().replace(' ', '_')}.png")
+                    "unidade": product['tipo_volume']
                 }
             cursor.close()
             print(f"Log: Estoque carregado. {len(self.local_stock)} itens encontrados para o termo '{search_term}'.")
@@ -184,41 +184,33 @@ class InventoryApp(ctk.CTk):
         else:
             item_row = 0
             for name, data in self.local_stock.items():
-                self._add_item_widget(name, data["qtd"], data["unidade"], data["img"], item_row)
+                # A chamada para _add_item_widget foi atualizada, sem o caminho da imagem.
+                self._add_item_widget(name, data["qtd"], data["unidade"], item_row)
                 item_row += 1
         
         self.items_container.update_idletasks()
 
-    def _add_item_widget(self, name, qty, unit, img_path_str, row_index):
+    def _add_item_widget(self, name, qty, unit, row_index):
+        """ Cria o widget de um item na lista, agora sem a imagem. """
         item_frame = ctk.CTkFrame(self.items_container, fg_color="#0084FF", corner_radius=12, height=60)
         item_frame.grid(row=row_index, column=0, sticky="ew", pady=5, padx=2)
         item_frame.grid_propagate(False)
-        item_frame.grid_columnconfigure(0, weight=0)
-        item_frame.grid_columnconfigure(1, weight=1)
-        item_frame.grid_columnconfigure(2, weight=0)
-        item_frame.item_name = name
-        final_img_path = Path(img_path_str)
-        if not final_img_path.is_absolute():
-            final_img_path = OUTPUT_PATH / img_path_str
-        item_image = None
-        try:
-            if final_img_path.exists() and final_img_path.is_file():
-                pil_item_img = Image.open(final_img_path).resize((40, 40), Image.LANCZOS).convert("RGBA")
-                item_image = ctk.CTkImage(light_image=pil_item_img, dark_image=pil_item_img, size=(40, 40))
-            else:
-                if DEFAULT_ITEM_IMAGE_PATH.exists() and DEFAULT_ITEM_IMAGE_PATH.is_file():
-                    pil_default_img = Image.open(DEFAULT_ITEM_IMAGE_PATH).resize((40,40), Image.LANCZOS).convert("RGBA")
-                    item_image = ctk.CTkImage(light_image=pil_default_img, dark_image=pil_default_img, size=(40,40))
-        except Exception: pass
-        font_to_use = self.item_name_font if item_image else self.emoji_fallback_font
-        ctk.CTkLabel(item_frame, image=item_image, text="" if item_image else "🖼️", fg_color="transparent", text_color="white", font=font_to_use).grid(row=0, column=0, padx=(10, 5), pady=10, sticky="w")
-        ctk.CTkLabel(item_frame, text=name, fg_color="transparent", text_color="white", font=self.item_name_font, anchor="w").grid(row=0, column=1, padx=5, pady=10, sticky="ew")
         
+        # O layout foi simplificado para duas colunas: nome e quantidade.
+        item_frame.grid_columnconfigure(0, weight=1) # Coluna para o nome
+        item_frame.grid_columnconfigure(1, weight=0) # Coluna para a quantidade
+
+        # A label da imagem foi removida.
+        
+        # Label do nome do item
+        ctk.CTkLabel(item_frame, text=name, fg_color="transparent", text_color="white", font=self.item_name_font, anchor="w").grid(row=0, column=0, padx=15, pady=10, sticky="ew")
+        
+        # Formatação e exibição da quantidade
         formatted_qtd = "{:g}".format(float(qty)).replace('.', ',')
         qty_text_display = f"{formatted_qtd} {unit}"
 
         qty_label = ctk.CTkLabel(item_frame, text=qty_text_display, fg_color="transparent", text_color="white", font=self.qty_font)
-        qty_label.grid(row=0, column=2, padx=(5, 10), pady=10, sticky="e")
+        qty_label.grid(row=0, column=1, padx=(5, 15), pady=10, sticky="e")
 
     def _center_dialog(self, dialog, width, height):
         self.update_idletasks(); parent_x = self.winfo_x(); parent_y = self.winfo_y(); parent_width = self.winfo_width(); parent_height = self.winfo_height(); center_x = parent_x + (parent_width // 2) - (width // 2); center_y = parent_y + (parent_height // 2) - (height // 2); dialog.geometry(f"{width}x{height}+{center_x}+{center_y}")
@@ -319,8 +311,6 @@ class InventoryApp(ctk.CTk):
                 messagebox.showerror(title="Erro", message="Insira uma quantidade válida.", parent=dialog)
                 return
                 
-            # --- CORREÇÃO AQUI ---
-            # Converte a quantidade do estoque para float antes de comparar/subtrair
             stock_qty = float(self.local_stock[name]["qtd"])
             
             if stock_qty < qty_to_remove: messagebox.showwarning("Aviso", f"Qtd. insuficiente para '{name}'.\nDisponível: {self.local_stock[name]['qtd']}", parent=dialog); return

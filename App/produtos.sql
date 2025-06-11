@@ -40,7 +40,7 @@ CREATE TABLE `produtos` (
 
 INSERT INTO `produtos` (`id_produto`, `nome_produto`, `quantidade_produto`, `tipo_volume`) VALUES
 (004, 'Ovo', 12, 'Unidades'),
-(005, 'Farrinha', 2, 'Kg'),
+(005, 'Farinha', 2, 'Kg'),
 (006, 'Carne', 900, 'Gramas'),
 (007, 'Batata', 3, 'Unidades'),
 (008, 'Chocolate', 200, 'Gramas'),
