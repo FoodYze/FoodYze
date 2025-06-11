@@ -165,7 +165,7 @@ class App(ctk.CTk):
                      font=self.robot_font, text_color="#0084FF", # Cor azul do tema
                      bg_color="transparent").grid(row=1, column=0, pady=(20, 10)) # Ajuste o pady para posicionamento
 
-        ctk.CTkLabel(self.main_content_frame, text="Seu Assistente Culinário Completo",
+        ctk.CTkLabel(self.main_content_frame, text="Sua Assistente Culinária Completa",
                      font=self.medium_font, text_color="#333333",
                      bg_color="transparent").grid(row=3, column=0, pady=(0, 5)) # Ajustado para row=3
 

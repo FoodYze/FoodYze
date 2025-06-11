@@ -95,7 +95,7 @@ def formatar_estoque_para_ia(lista_estoque):
 # --- INÍCIO: Configuração da API Gemini ---
 # IMPORTANTE: Substitua pela sua chave API. Considere usar variáveis de ambiente em produção.
 # Substitua 'SUA_CHAVE_API_AQUI' pela sua chave real.
-GOOGLE_API_KEY = 'AIzaSyAXNus65byud4rhp8HH81x9t0EXaVwrrz0'  # Mantenha sua chave aqui se já configurada
+GOOGLE_API_KEY = 'CHAVEAPI' # Mantenha sua chave aqui se já configurada
 
 API_CONFIGURADA = False
 model = None
@@ -244,7 +244,7 @@ class App(ctk.CTk):
         self.send_btn.pack(side="right", padx=(0, 10), pady=10)
 
         if API_CONFIGURADA:
-            self.add_message("Olá! Sou Geli, seu assistente de culinária especialista prática e com a missão de te ajudar a combater o desperdício de alimentos. Como posso te ajudar hoje?", "bot")
+            self.add_message("Olá! Sou Geli, sua assistente de culinária especialista prática e com a missão de te ajudar a combater o desperdício de alimentos. Como posso te ajudar hoje?", "bot")
         else:
             self.add_message("API não configurada. Verifique o console para erros e a chave API no código.", "bot_error")
 
