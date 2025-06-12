@@ -466,7 +466,7 @@ class App(tk.Tk):
 
         window = self 
 
-        self.title("Food-YZE - Minhas Receitas")
+        self.title("MyGeli - Minhas Receitas")
         # Aplicando o tamanho da janela principal de 'gui2comtamanho das janels correto.py' (400x650)
         main_width = 400
         main_height = 650

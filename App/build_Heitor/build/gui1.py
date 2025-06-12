@@ -88,7 +88,7 @@ class App(ctk.CTk):
         ctk.set_default_color_theme("blue")
 
         # Configuração da janela
-        self.title("Food-YZE")
+        self.title("MyGeli")
         self.geometry("400x650")
         self.minsize(400, 650)
         self.maxsize(400, 650)
@@ -140,7 +140,7 @@ class App(ctk.CTk):
         except Exception as e:
             print(f"Erro ao carregar GIF: {e}")
             # Fallback para texto caso o GIF não seja carregado
-            ctk.CTkLabel(self.header_frame, text="FOOD-YZE", 
+            ctk.CTkLabel(self.header_frame, text="MyGeli", 
                          font=self.large_font, text_color="white", # Texto branco no cabeçalho
                          bg_color="transparent").grid(row=0, column=0, pady=10, sticky="nsew")
 
@@ -160,19 +160,30 @@ class App(ctk.CTk):
         self.main_content_frame.grid_rowconfigure(6, weight=0) # Botões
         self.main_content_frame.grid_rowconfigure(7, weight=1) # Espaço depois dos botões
 
-        # --- Robozinho Minimalista ---
-        ctk.CTkLabel(self.main_content_frame, text="🤖", # Emoji de robô
-                     font=self.robot_font, text_color="#0084FF", # Cor azul do tema
-                     bg_color="transparent").grid(row=1, column=0, pady=(20, 10)) # Ajuste o pady para posicionamento
-
-        ctk.CTkLabel(self.main_content_frame, text="Sua Assistente Culinária Completa",
+        # --- Robozinho Minimalista (agora com imagem PNG) ---
+        self.robot_image = None
+        try:
+            # Carrega a imagem PNG
+            image_path = relative_to_assets("bot_icon.png") # Certifique-se de que este caminho está correto
+            original_image = Image.open(image_path).convert("RGBA")
+            # Redimensiona a imagem para um tamanho adequado (ex: 100x100)
+            resized_image = original_image.resize((200, 200), Image.LANCZOS)
+            self.robot_image = ctk.CTkImage(light_image=resized_image, dark_image=resized_image, size=(200, 200))
+           
+            ctk.CTkLabel(self.main_content_frame, image=self.robot_image, text="", # Remove o texto para usar a imagem
+                         bg_color="transparent").grid(row=1, column=0, pady=(20, 10))
+        except Exception as e:
+            print(f"Erro ao carregar a imagem do robô: {e}")
+            # Fallback para o emoji de robô se a imagem não carregar
+            ctk.CTkLabel(self.main_content_frame, text="🤖", # Emoji de robô
+                         font=ctk.CTkFont("Segoe UI Emoji", 80), text_color="#0084FF",
+                         bg_color="transparent").grid(row=1, column=0, pady=(20, 10))
+        ctk.CTkLabel(self.main_content_frame, text="Seu Assistente Culinário Completo",
                      font=self.medium_font, text_color="#333333",
-                     bg_color="transparent").grid(row=3, column=0, pady=(0, 5)) # Ajustado para row=3
-
+                     bg_color="transparent").grid(row=3, column=0, pady=(0, 5))
         ctk.CTkLabel(self.main_content_frame, text="Tudo que você precisa para\numa cozinha inteligente e sem desperdício",
                      font=self.small_font, text_color="#666666", justify="center",
-                     bg_color="transparent").grid(row=4, column=0, pady=(5, 0)) # Ajustado para row=4
-
+                     bg_color="transparent").grid(row=4, column=0, pady=(5, 0))
         # Container para os botões com sombra sutil (simulado com CTkFrame e borda)
         self.buttons_frame = ctk.CTkFrame(self.main_content_frame, fg_color="#FFFFFF", corner_radius=12,
                                           border_color="#E0E0E0", border_width=1)
