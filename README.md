@@ -13,10 +13,10 @@
 [![first-timers-only Friendly](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](http://www.firsttimersonly.com/)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-An instantly ready, full-featured online IDE for web development on any device
-with a browser. Enabling you to start new projects quickly and prototype
-rapidly. With CodeSandbox, you can create web apps, experiment with code, test
-ideas, and share creations easily.
+Bem vindo(a) ao MyGeli! < br>
+Sua mais nova assistente virtual da área de culinária, saúde e bem-estar. Nosso principal objetivo é combater o desperdício de alimentos domésticos no país, te
+ajudando a preparar receitas utilizando ingredientes presentes no estoque de sua geladeira, cascas e talos, e alimentos próximos do vencimento. Meu principal valor
+é a unificações de serviços e funcionalidades em uma única aplicação.
 
 ## Other CodeSandbox repositories
 
@@ -31,12 +31,12 @@ sourced.
 - [CLI](https://github.com/codesandbox/codesandbox-importers/tree/master/packages/cli):
   the CLI to upload a CodeSandbox project from your command line
 
-## Documentation
+## Documentação
 
 You can find our documentation on our
 [website](https://codesandbox.io/docs/learn/introduction/overview)
 
-## Contributors ✨
+## Contribuidores ✨
 
 Thanks goes to these wonderful people
 ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
