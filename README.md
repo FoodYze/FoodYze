@@ -43,7 +43,7 @@ Nossa equipe desenvolvedora:
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/207372280?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Guilherme Peres Romanzotti</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/202444594?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Heitor Vitti Partezani</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/207231091?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Luis Otávio Routh da Silva</b></sub><br /></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/202424720?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Marvin Cristhian Gomes Pinto</b></sub><br /></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/202424720?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><a href="github.com/MarvinCristhian07"><b>Marvin Cristhian Gomes Pinto</b></a></sub><br /></td>
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/216594722?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Paulo Guilherme Moreira</b></sub><br /></td>
