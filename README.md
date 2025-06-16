@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://codesandbox.io">
-    <img src="https://codesandbox.io/static/img/banner.png?v=2" height="300px">
+    <img src="" height="300px">
   </a>
 </p>
 
@@ -24,13 +24,12 @@ Segue abaixo os serviços que oferecemos em nossa aplicação:
 
 ## Documentação
 
-You can find our documentation on our
-[website](https://codesandbox.io/docs/learn/introduction/overview)
+Você pode encontrar nossa documentação no link abaixo:
+[website](linktr.ee/mygeli)
 
 ## Contribuidores ✨
 
-Thanks goes to these wonderful people
-([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+Nossa equipe desenvolvedora:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -57,10 +56,19 @@ Thanks goes to these wonderful people
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## Thanks
+## Agradecimento
 
-<a href="https://www.chromaticqa.com/"><img src="https://cdn-images-1.medium.com/letterbox/147/36/50/50/1*oHHjTjInDOBxIuYHDY2gFA.png?source=logoAvatar-d7276495b101---37816ec27d7a" width="120"/></a>
+Agradecemos aos nossos professores e toda equipe da Fatec Rio Claro, pela ajuda, apoio e contribuição ao projeto.
 
-Thanks to [Chromatic](https://www.chromaticqa.com/) for providing the visual
-testing platform that helps us catch unexpected changes.
+---
 
+<div align="center">
+  <h3><b>📍 Profile Visitor Count</b></h3>
+</div>
+
+<p align="center">
+  <img
+    src="https://profile-counter.glitch.me/MarvinCristhian07/count.svg"
+    alt="Número de visitantes no perfil"
+  />
+</p>
