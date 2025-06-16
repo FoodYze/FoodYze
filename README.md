@@ -25,7 +25,7 @@ Segue abaixo os serviços que oferecemos em nossa aplicação:
 ## Documentação
 
 Você pode encontrar nossa documentação no link abaixo:
-[Documentação](linktr.ee/mygeli)
+[Documentação](https://linktr.ee/mygeli)
 
 ## Contribuidores ✨
 
