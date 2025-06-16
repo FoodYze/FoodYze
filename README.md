@@ -46,7 +46,7 @@ Nossa equipe desenvolvedora:
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/202424720?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Marvin Cristhian Gomes Pinto</b></sub><br /></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Paulo Guilherme Moreira</b></sub><br /></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/216594722?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Paulo Guilherme Moreira</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/208488242?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Raphael Culim Neves</b></sub><br /></td>
   </tbody>
 </table>
