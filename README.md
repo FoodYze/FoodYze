@@ -18,14 +18,14 @@ ajudando a preparar receitas utilizando ingredientes presentes no estoque de sua
 
 Segue abaixo os serviços que oferecemos em nossa aplicação:
 
-- Falar com a Geli: Chatbot com I.A generativa do Gemini 2.5 Flash, personificada com a personalidade da Geli. Sugere receitas, fornece informações nutricionais dos alimentos, confecção de cardápios diários e semanais, etc.
+- Falar com a Geli: Chatbot com I.A generativa do Gemini 2.0 Flash, personificada com a personalidade da Geli. Sugere receitas, fornece informações nutricionais dos alimentos, confecção de cardápios diários e semanais, etc.
 - Ver receitas: Vizualizar todas as receitas salvas geradas pela Geli, desde as receitas simples, até os cadápios. Com função de pesquisar receita, para uma busca mais produnda e específica.
 - Gerenciar estoque: Função de adicionar e remover itens do estoque disponível, informando o nome e quantidade do alimento. Todos os itens do estoque são salvos em um banco de dados profissional, seguro e confiável.
 
-## Documentação
+## Recursos, Documentação e Materiais
 
 Você pode encontrar nossa documentação no link abaixo:
-[Documentação](https://linktr.ee/mygeli)
+[Clique aqui!](https://linktr.ee/mygeli)
 
 ## Contribuidores ✨
 
