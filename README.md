@@ -53,7 +53,7 @@ Thanks goes to these wonderful people
       <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Guilherme Peres Romanzotti</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Heitor Vitti Partezani</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/207231091?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Luis Otávio Routh da Silva</b></sub><br /></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Marvin Cristhian Gomes Pinto</b></sub><br /></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/202424720?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Marvin Cristhian Gomes Pinto</b></sub><br /></td>
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Paulo Guilherme Moreira</b></sub><br /></td>
