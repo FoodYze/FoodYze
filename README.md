@@ -38,7 +38,7 @@ Nossa equipe desenvolvedora:
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/cesarbovo"><img src="https://avatars.githubusercontent.com/u/207229048?v=4" width="100px;" alt="Cesar Augusto"/></a><br /><sub><b>Cesar Augusto Oliveira Bovo</b></sub><br /></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/201613970?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Elisa Almeida Alcântara</b></sub><br /></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lizziefg"><img src="https://avatars.githubusercontent.com/u/201613970?v=4" width="100px;" alt="Elisa Almeida"/></a><br /><sub><b>Elisa Almeida Alcântara</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/214133984?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Fábio Luis Henrique</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/207372280?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Guilherme Peres Romanzotti</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/202444594?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Heitor Vitti Partezani</b></sub><br /></td>
