@@ -47,7 +47,7 @@ Thanks goes to these wonderful people
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Cesar Augusto Oliveira Bovo</b></sub><br /></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/207229048?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Cesar Augusto Oliveira Bovo</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Cesar Augusto Oliveira Bovo</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Cesar Augusto Oliveira Bovo</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars0.githubusercontent.com/u/587016?v=3?s=100" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Cesar Augusto Oliveira Bovo</b></sub><br /></td>
