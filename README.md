@@ -47,7 +47,7 @@ Nossa equipe desenvolvedora:
   </a><br /><sub><b>Marvin Cristhian Gomes Pinto</b></sub></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/216594722?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Paulo Guilherme Moreira</b></sub><br /></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/pgmoreirax"><img src="https://avatars.githubusercontent.com/u/216594722?v=4" width="100px;" alt="Paulo Guilherme"/></a><br /><sub><b>Paulo Guilherme Moreira</b></sub><br /></td>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/208488242?v=4" width="100px;" alt="Ives van Hoorne"/><br /><sub><b>Raphael Culim Neves</b></sub><br /></td>
   </tbody>
 </table>
