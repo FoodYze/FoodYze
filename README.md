@@ -13,19 +13,18 @@
 [![first-timers-only Friendly](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](http://www.firsttimersonly.com/)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-Bem vindo(a) ao MyGeli! < br>
+Bem vindo(a) ao MyGeli! 
 Sua mais nova assistente virtual da área de culinária, saúde e bem-estar. Nosso principal objetivo é combater o desperdício de alimentos domésticos no país, te
 ajudando a preparar receitas utilizando ingredientes presentes no estoque de sua geladeira, cascas e talos, e alimentos próximos do vencimento. Meu principal valor
 é a unificações de serviços e funcionalidades em uma única aplicação.
 
-## Other CodeSandbox repositories
+## Nossos serviços!
 
-CodeSandbox consists of several separate servers, some of which are open
-sourced.
+Segue abaixo os serviços que oferecemos em nossa aplicação:
 
-- Client: the web application
-- Server: the [Phoenix](https://github.com/phoenixframework/phoenix) API server
-- Nginx: Nginx config files
+- Falar com a Geli: Chatbot com I.A generativa do Gemini 2.5 Flash, personificada com a personalidade da Geli. Sugere receitas, fornece informações nutricionais dos alimentos, confecção de cardápios diários e semanais, etc.
+- Ver receitas: Vizualizar todas as receitas salvas geradas pela Geli, desde as receitas simples, até os cadápios. Com função de pesquisar receita para uma busca mais produnda e específica.
+- Gerenciar estoque:  files
 - [Git Extractor](https://github.com/codesandbox/codesandbox-importers):
   responsible for extracting the source from a GitHub repository
 - [CLI](https://github.com/codesandbox/codesandbox-importers/tree/master/packages/cli):
