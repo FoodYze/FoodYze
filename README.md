@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://codesandbox.io">
+  <a href="#">
     <img src="https://raw.githubusercontent.com/FoodYze/MyGeli/refs/heads/main/GELI.png" height="300px">
   </a>
 </p>
