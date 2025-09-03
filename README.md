@@ -6,8 +6,11 @@
 
 &nbsp;
 
+<code><img height="32" src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" alt="CSS3"/></code>
+<code><img height="32" src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" alt="HTML5"/></code>
+<code><img height="32" src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-plain-wordmark.svg" alt="MySQL"/></code>
+<code><img height="32" src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg" alt="PHP"/></code>
 <code><img height="32" src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg" alt="Python"/></code>
-<code><img height="32" src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" alt="MySQL"/></code>
 
 Bem vindo(a) ao MyGeli! 
 Sua mais nova assistente virtual da área de culinária, saúde e bem-estar. Nosso principal objetivo é combater o desperdício de alimentos domésticos no país, te
