@@ -60,6 +60,19 @@ Nossa equipe desenvolvedora:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+## Atualizações!
+
+Nesse segundo semestre de 2025, a equipe MyGeli está desenvolvendo uma versão web desktop do aplicativo, com as mesmas funcionalidades e ferramentas. Dentre as atualizações e modificações a serem feitas até o final do ano, estão:
+
+- Disponibilidade de acesso multiplataforma (Desktop, Android, IoS);
+- Sistema de registro e autenticação de usuários;
+- Lista de compras;
+- Refinamento da IA da Geli;
+- Sistema de notificações;
+- Comandos por voz;
+- Melhorias de Design e Layout;
+- Correção de bugs;
+
 ## Agradecimento
 
 Agradecemos aos nossos professores e toda equipe da Fatec Rio Claro, pela ajuda, apoio e contribuição ao projeto.
