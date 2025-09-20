@@ -80,12 +80,9 @@ Agradecemos aos nossos professores e toda equipe da Fatec Rio Claro, pela ajuda,
 ---
 
 <div align="center">
-  <h3><b>📍 Profile Visitor Count</b></h3>
+  <h3><b>📍 Visitas ao perfil</b></h3>
 </div>
 
 <p align="center">
-  <img
-    src="https://profile-counter.glitch.me/MarvinCristhian07/count.svg"
-    alt="Número de visitantes no perfil"
-  />
+  <img src="https://komarev.com/ghpvc/?username=FoodYze&color=blue" alt="Visitas ao perfil" />
 </p>
